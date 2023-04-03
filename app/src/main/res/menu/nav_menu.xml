@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@drawable/nav_settings"
+
+        android:title="SETTINGS"/>
+
+
+    <item android:title="PROFILE">
+
+        <menu>
+
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/nav_logout"
+                android:title="LOGOUT"/>
+
+            <item
+                android:id="@+id/nav_reset_pass"
+                android:icon="@drawable/nav_reset_pass"
+                android:title="RESET PASSWORD"/>
+
+        </menu>
+
+    </item>
+
+    <item android:title="COMMUNICATE">
+
+        <menu>
+
+            <item
+                android:id="@+id/nav_rate"
+                android:icon="@drawable/nav_rate"
+                android:title="RATE US"/>
+
+            <item
+                android:id="@+id/nav_feedback"
+                android:icon="@drawable/nav_feedback"
+                android:title="FEEDBACK"/>
+
+            <item
+                android:id="@+id/nav_developer"
+                android:icon="@drawable/nav_developer"
+                android:title="ABOUT DEVELOPER"/>
+
+
+
+        </menu>
+
+    </item>
+
+
+
+</menu>

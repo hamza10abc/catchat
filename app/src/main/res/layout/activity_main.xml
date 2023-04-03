@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/catchat_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/catchat_logo" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="350dp"
+        android:layout_height="55dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp"
+        android:background="@drawable/user_detail_bk"
+        android:hint="EMAIL"
+        android:inputType="textWebEmailAddress"
+        android:paddingLeft="15dp"
+        android:textColor="@color/blue"
+        android:textColorHint="@color/blue" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="350dp"
+        android:layout_height="55dp"
+        android:layout_below="@id/username"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/user_detail_bk"
+        android:ems="10"
+        android:hint="PASSWORD"
+        android:inputType="textPassword"
+        android:paddingLeft="15dp"
+        android:textColor="@color/blue"
+        android:textColorHint="@color/blue" />
+
+    <TextView
+        android:id="@+id/forgot_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password"
+        android:layout_alignEnd="@id/password"
+        android:layout_marginTop="10dp"
+        android:text="FORGOT PASSWORD"
+        android:textColor="@color/SkyBlue"
+        android:textSize="12dp"
+        android:textStyle="italic" />
+
+    <ImageView
+        android:id="@+id/img101"
+        android:layout_width="350dp"
+        android:layout_height="20dp"
+        android:layout_below="@id/resend_btn"
+        android:layout_marginTop="35dp"
+        android:background="@color/orange"
+        android:textColor="@color/SkyBlue"
+        android:layout_centerInParent="true"/>
+
+    <TextView
+        android:id="@+id/text101"
+        android:layout_width="350dp"
+        android:layout_height="20dp"
+        android:layout_below="@id/resend_btn"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="35dp"
+        android:text="NOTE : EMAIL MIGHT BE IN SPAM FOLDER"
+        android:textAlignment="center"
+        android:textColor="@color/BrightSkyBlue"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/notVerifiedtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/username"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-245dp"
+        android:text="EMAIL NOT VERIFIED"
+        android:textColor="#FF0000"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/resend_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/signup_pg_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="@color/orange"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="RESEND LINK"
+        android:textColor="#311B92" />
+
+
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="155dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:backgroundTint="@color/orange"
+        android:text="LOGIN"
+        android:textColor="@color/blue"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/signup_pg_btn"
+        android:layout_width="155dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/login_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/orange"
+        android:text="CREATE NEW ACCOUNT"
+        android:textColor="@color/blue"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="350dp"
+        android:layout_height="55dp"
+        android:layout_below="@id/signup_pg_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="64dp"
+        android:hint="TAP THE LOGO TO CONTINUE"
+        android:textAlignment="center"
+        android:textColor="@color/blue"
+        android:textColorHint="@color/orange"
+        android:textSize="18dp"
+        android:textStyle="bold"></TextView>
+
+
+
+
+</RelativeLayout>

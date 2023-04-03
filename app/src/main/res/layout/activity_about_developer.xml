@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/catchat_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/catchat_logo" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/top"
+        android:paddingBottom="35dp">
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            android:textColor="@color/orange"
+            android:text="Hi $user \n
+I am Hamza, the developer of CATCHAT.\n
+
+My interest to develop CATCHAT arised in the early days of March 2022.\n
+
+It wasn't easy at all, infact I should mention it was extremely hard as I had no help to get to this stage and moreover I had no support while developing this app. The best part was I was too dedicated and determined to develop this application that even people demotivating me couldn't stop me from my work.\n
+
+I still managed it somehow and developed something kinda useful.\n
+
+The amount of energy and time spent on this was the most in all the types of projects I have made.\n
+
+I literally can't make credits / cast of this application as I will just have to copy paste my own name again and again 😂.\n
+
+I feel like there is only one developer on EARTH and that's me cause I tried searching but found none except ETERNAL DARKNESS.\n
+
+IMAGINE HOW HARD IT WAS TO RESOLVE ERRORS 😔\n
+
+I am looking for people who can give me proper feedback and provide me support ( for first time in my life ) to help me take this application to ADVANCED level.\n
+
+PLEASE TRY GIVING 5 STAR RATING\n
+Now this is the biggest obstacle for me to overcome.\n
+That is to make my $user HAPPY.\n
+
+ALL THE BEST 🙂\n
+ENJOY AND PROVIDE ME FEEDBACK\n
+WISH YOU A HAPPY CATCHAT LIFE\n"
+            android:textSize="25dp"
+            android:paddingTop="25dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:paddingBottom="40dp"/>
+
+    </ScrollView>
+
+
+
+</RelativeLayout>

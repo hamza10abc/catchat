@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VerificationPage"
+    android:background="@color/black">
+
+    <TextView
+        android:id="@+id/t1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="200dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="PLEASE VERIFY YOUR EMAIL USING THE LINK SENT TO THE GIVEN EMAIL ID"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:textColor="@color/orange"/>
+
+    <TextView
+        android:id="@+id/t2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/t1"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:text="EMAIL STATUS:"
+        android:textColor="@color/SkyBlue"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/resend_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/t2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:backgroundTint="@color/orange"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="RESEND LINK"
+        android:textColor="#311B92" />
+
+    <TextView
+        android:id="@+id/eNotV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/t1"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="50dp"
+        android:layout_toRightOf="@id/t2"
+        android:text="NOT VERIFIED"
+        android:textColor="#FF0000"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/eIsV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/t1"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="50dp"
+        android:layout_toRightOf="@id/t2"
+        android:text="VERIFIED"
+        android:textColor="#00FF2A"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/check_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/t2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/orange"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="CHECK STATUS"
+        android:textColor="#311B92" />
+
+
+    <Button
+        android:id="@+id/loginPAGE_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/t2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/orange"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="LOGIN PAGE"
+        android:textColor="#311B92" />
+
+
+    <ImageView
+        android:layout_width="350dp"
+        android:layout_height="20dp"
+        android:layout_above="@id/imgv1"
+        android:background="@color/orange"
+        android:textColor="@color/SkyBlue"
+        android:layout_centerInParent="true"/>
+
+    <TextView
+        android:id="@+id/text101"
+        android:layout_width="350dp"
+        android:layout_height="20dp"
+        android:layout_above="@id/imgv1"
+        android:layout_centerInParent="true"
+        android:text="NOTE : EMAIL MIGHT BE IN SPAM FOLDER"
+        android:textAlignment="center"
+        android:textColor="@color/BrightSkyBlue"
+        android:textSize="15dp" />
+
+    <Button
+        android:id="@+id/BACK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/text101"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:backgroundTint="@color/orange"
+        android:text="BACK" />
+
+
+
+    <ImageView
+        android:id="@+id/imgv1"
+        android:layout_width="350dp"
+        android:layout_height="3dp"
+        android:layout_above="@+id/text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        android:background="@color/blue" />
+
+    <ImageView
+        android:layout_width="350dp"
+        android:layout_height="3dp"
+        android:layout_centerHorizontal="true"
+        android:background="@color/blue"
+        android:layout_below="@+id/text"
+        android:layout_marginTop="-15dp"/>
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="350dp"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:hint="PLEASE CHECK YOUR CREDENTIALS BEFORE YOU CONFIRM THE SIGNUP"
+        android:textAlignment="center"
+        android:textColor="@color/blue"
+        android:textColorHint="@color/orange"
+        android:textSize="18dp"
+        android:textStyle="bold"/>
+
+
+</RelativeLayout>

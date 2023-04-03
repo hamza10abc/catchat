@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_pic"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="55dp"
+        android:src="@drawable/catchat_logo" />
+
+    <TextView
+        android:id="@+id/crnt_username"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@+id/profile_pic"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-10dp"
+        android:layout_marginBottom="1dp"
+        android:text="USERNAME"
+        android:textColor="@color/orange"
+        android:textSize="35dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/crnt_email"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@+id/crnt_username"
+        android:layout_centerHorizontal="true"
+        android:text="email"
+        android:textColor="@color/orange"
+        android:textSize="25dp"
+        android:layout_marginBottom="15dp"/>
+
+    <ImageView
+        android:id="@+id/img_view_bar"
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:layout_below="@id/crnt_email"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="25dp"
+        android:background="@color/orange"
+        android:layout_marginBottom="-15dp"/>
+
+    <Button
+        android:id="@+id/pic_upload_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_below="@id/img_view_bar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/orange"
+        android:text="UPLOAD PROFILE PIC"
+        android:textColor="@color/BrightSkyBlue"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/username_rename_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_below="@id/pic_upload_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/orange"
+        android:text="CHANGE USERNAME"
+        android:textColor="@color/BrightSkyBlue"
+        android:textSize="25dp" />
+
+    <EditText
+        android:id="@+id/new_usrnme"
+        android:layout_width="275dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/img_view_bar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:hint="NEW USERNAME"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textColor="@color/BrightSkyBlue"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/new_usrnme_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_below="@id/pic_upload_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/orange"
+        android:text="CHANGE USERNAME"
+        android:textColor="@color/BrightSkyBlue"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/back_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:backgroundTint="@color/orange"
+        android:text="BACK"
+        android:textAlignment="center"
+        android:textColor="@color/BrightSkyBlue"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/select_img_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_below="@id/img_view_bar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/orange"
+        android:text="SELECT IMAGE"
+        android:textColor="@color/BrightSkyBlue"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/upload_img_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_below="@id/pic_upload_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/orange"
+        android:text="UPLOAD IMAGE"
+        android:textColor="@color/BrightSkyBlue"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/main_back_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:backgroundTint="@color/orange"
+        android:text="BACK"
+        android:textAlignment="center"
+        android:textColor="@color/BrightSkyBlue"
+        android:textSize="25dp" />
+
+
+
+
+</RelativeLayout>
