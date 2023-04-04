@@ -9,6 +9,8 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import android.R.id.home
+import android.graphics.BitmapFactory
+import android.widget.ImageView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -20,6 +22,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import java.io.File
 
 class home_page : AppCompatActivity() {
 
@@ -30,6 +35,7 @@ class home_page : AppCompatActivity() {
 
     private lateinit var nav_username : TextView
     private lateinit var nav_email : TextView
+    private lateinit var profile_pic : ImageView
 
     private lateinit var userRecyclerView: RecyclerView
     private lateinit var userList: ArrayList<user>
@@ -37,6 +43,7 @@ class home_page : AppCompatActivity() {
     private lateinit var mAuth : FirebaseAuth
     private lateinit var mDbRef: DatabaseReference
     private lateinit var database : DatabaseReference
+    private lateinit var storRef : StorageReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -122,6 +129,7 @@ class home_page : AppCompatActivity() {
             true
         }
 
+
         // NAV HEADER PROFILE
         val curruid = mAuth.currentUser?.uid
         database = FirebaseDatabase.getInstance().getReference("user")
@@ -132,6 +140,20 @@ class home_page : AppCompatActivity() {
 
             findViewById<TextView>(R.id.crnt_username).setText("$user_name")
             findViewById<TextView>(R.id.crnt_email).setText("$user_email")
+
+        }
+
+        // NAV HEADER PROFILE PIC
+        val imageName = curruid
+            storRef = FirebaseStorage.getInstance().getReference("profilePic/$imageName")
+        val localFile = File.createTempFile("tempIMG","jpg")
+        storRef.getFile(localFile).addOnCompleteListener{
+
+            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+            profile_pic = findViewById(R.id.profile_pic)
+            profile_pic.setImageBitmap(bitmap)
+
+        }.addOnFailureListener{
 
         }
 

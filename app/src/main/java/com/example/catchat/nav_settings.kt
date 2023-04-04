@@ -3,6 +3,7 @@ package com.example.catchat
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.media.Image
 import android.media.tv.TvContract
 import android.net.Uri
@@ -21,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import java.io.File
 import java.io.IOException
 
 class nav_settings : AppCompatActivity() {
@@ -31,9 +33,9 @@ class nav_settings : AppCompatActivity() {
     private lateinit var update_DB: DatabaseReference
 
     private lateinit var imagePreview : ImageView
-    private var Img_URI: Uri? = null
+    private lateinit var Img_URI : Uri
     private lateinit var Fbstorage: FirebaseStorage
-    private lateinit var storageReference: StorageReference
+    private lateinit var storREF: StorageReference
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +44,7 @@ class nav_settings : AppCompatActivity() {
 
         imagePreview = findViewById(R.id.profile_pic)
         Fbstorage = FirebaseStorage.getInstance()
-        storageReference = FirebaseStorage.getInstance().getReference()
+        storREF = FirebaseStorage.getInstance().getReference()
 
         mAuth = FirebaseAuth.getInstance()
         mDbRef = FirebaseDatabase.getInstance().getReference()
@@ -63,6 +65,20 @@ class nav_settings : AppCompatActivity() {
         // CURRENT UID FOR CURRENT USERNAME AND EMAIL
         val curruid = mAuth.currentUser?.uid
 
+//----------FETCHING PROFILE PIC FROM FIREBASE CLOUD STORAGE----------------
+        val imageName = curruid
+        storREF = FirebaseStorage.getInstance().getReference("profilePic/$imageName")
+        val localFile = File.createTempFile("tempIMG","jpg")
+        storREF.getFile(localFile).addOnCompleteListener{
+
+            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+            imagePreview = findViewById(R.id.profile_pic)
+            imagePreview.setImageBitmap(bitmap)
+
+        }.addOnFailureListener{
+
+        }
+//------------------------------------------------------------------------
 
         pic_upload_btn.setVisibility(View.VISIBLE)
         change_usrnme_btn.setVisibility(View.VISIBLE)
@@ -102,25 +118,17 @@ class nav_settings : AppCompatActivity() {
 
         select_img_btn.setOnClickListener {
 
-           /* selectImage()
+           selectImage()
 
-            val getImage = registerForActivityResult(
-                ActivityResultContracts.GetContent(),
-                ActivityResultCallback {
-
-                    imagePreview.setImageURI(it)
-                }
-            )
-
-            getImage.launch("image/*")*/*/
-
-            Toast.makeText(applicationContext, "THIS FEATURE IS CURRENTLY UNAVAILABLE", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(applicationContext, "THIS FEATURE IS CURRENTLY UNAVAILABLE", Toast.LENGTH_SHORT).show()
         }
 
         upload_img_btn.setOnClickListener {
 
-            Toast.makeText(applicationContext, "THIS FEATURE IS CURRENTLY UNAVAILABLE", Toast.LENGTH_SHORT).show()
-          //  uploadImage()
+            uploadImage()
+
+//            Toast.makeText(applicationContext, "THIS FEATURE IS CURRENTLY UNAVAILABLE", Toast.LENGTH_SHORT).show()
+
         }
 
 
@@ -206,42 +214,35 @@ class nav_settings : AppCompatActivity() {
 
         }
 
-
-
-
-
     }
-    private fun selectImage() {
-        TODO("Not yet implemented")
-
-
-
-
-
-
-
-       /* val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-
-        startActivityForResult(Intent.createChooser(intent,"SELECT IMAGE"),100) */*/
-
-    }
-
-    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if(requestCode == 100 && resultCode == RESULT_OK)
-        {
-           // Img_URI = data?.data!!
-            imagePreview.setImageURI(data?.data)
-        }
-    }*/
-
 
     private fun uploadImage() {
-        TODO("Not yet implemented")
+
+        val fileName = mAuth.currentUser?.uid
+        storREF = FirebaseStorage.getInstance().getReference("profilePic/$fileName")
+        storREF.putFile(Img_URI).addOnSuccessListener {
+            Toast.makeText(applicationContext, "PROFILE PIC UPLOADED", Toast.LENGTH_SHORT).show()
+        }.addOnFailureListener{
+            Toast.makeText(applicationContext, "ERROR: UNABLE TO UPLOAD", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
+    private fun selectImage() {
+
+        val intent = Intent()
+        intent.type = "image/"
+        intent.action = Intent.ACTION_GET_CONTENT
+
+        startActivityForResult(intent,100)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 100 && resultCode == RESULT_OK){
+            Img_URI = data?.data!!
+            imagePreview.setImageURI(Img_URI)
+        }
+    }
 
 }
