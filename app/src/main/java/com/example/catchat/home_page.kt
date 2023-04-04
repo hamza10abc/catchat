@@ -8,7 +8,9 @@ import android.view.MenuItem
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
+import android.R.id.home
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -23,8 +25,8 @@ class home_page : AppCompatActivity() {
 
 
 
-
-    lateinit var  toogle : ActionBarDrawerToggle
+    private lateinit var drawerLayout: DrawerLayout ///
+    lateinit var  toggle : ActionBarDrawerToggle///
 
     private lateinit var nav_username : TextView
     private lateinit var nav_email : TextView
@@ -51,21 +53,53 @@ class home_page : AppCompatActivity() {
         userRecyclerView.layoutManager = LinearLayoutManager(this)
         userRecyclerView.adapter = adapter
 
-
-
-
-
-
-
-
-        val drawerLayout : DrawerLayout = findViewById(R.id.drawerLayout)
-
+//------------------
+        drawerLayout = findViewById(R.id.drawerLayout)
+        toggle = ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//---------
+//        drawerLayout = findViewById(R.id.drawerLayout)
+//        toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
+//        drawerLayout.addDrawerListener(toggle)
+//        toggle.syncState()
+//
+//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        supportActionBar?.setHomeButtonEnabled(true)
 
-        toogle = ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close)
-        drawerLayout.addDrawerListener(toogle)
-        toogle.isDrawerSlideAnimationEnabled
-        toogle.syncState()
+//        fun onOptionsItemSelected(item: MenuItem): Boolean {
+//            if (toggle.onOptionsItemSelected(item)) {
+//                return true
+//            }
+//            return super.onOptionsItemSelected(item)
+//        }
+
+//        fun onOptionsItemSelected(item: MenuItem): Boolean {
+//            if (item.itemId == android.R.id.home) {
+//                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+//                    drawerLayout.closeDrawer(GravityCompat.START)
+//                } else {
+//                    drawerLayout.openDrawer(GravityCompat.START)
+//                }
+//                return true
+//            }
+//            return super.onOptionsItemSelected(item)
+//        }
+
+//---------------
+
+
+
+
+//        val drawerLayout : DrawerLayout = findViewById(R.id.drawerLayout)
+//
+//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//
+//        toogle = ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close)
+//        drawerLayout.addDrawerListener(toogle)
+//        toogle.isDrawerSlideAnimationEnabled
+//        toogle.syncState()
         val navView : NavigationView = findViewById(R.id.nav_view)/////////
 
 
@@ -212,25 +246,10 @@ class home_page : AppCompatActivity() {
 
     }
 
-
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu,menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        if(item.itemId == R.id.logout){
-
-            mAuth.signOut()
-            val intent = Intent(this,MainActivity::class.java)
-            finish()
-            startActivity(intent)
-            overridePendingTransition(0,0)
-
-            return true
-        }
-        return true
+        return if (toggle.onOptionsItemSelected(item)) {
+            true
+        } else super.onOptionsItemSelected(item)
     }
+
 }
