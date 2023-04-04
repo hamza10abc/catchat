@@ -73,7 +73,9 @@ class nav_settings : AppCompatActivity() {
 
             val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
             imagePreview = findViewById(R.id.profile_pic)
-            imagePreview.setImageBitmap(bitmap)
+            if (bitmap != null){
+                imagePreview.setImageBitmap(bitmap)
+            }
 
         }.addOnFailureListener{
 

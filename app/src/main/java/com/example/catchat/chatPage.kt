@@ -1,15 +1,24 @@
 package com.example.catchat
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
+import android.view.MenuItem
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.ActionBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import java.io.File
 
 class chatPage : AppCompatActivity() {
 
@@ -19,12 +28,17 @@ class chatPage : AppCompatActivity() {
     private lateinit var messageAdapter: MessageAdapter
     private lateinit var messageList: ArrayList<Message>
     private lateinit var mDbRef: DatabaseReference
+    private lateinit var storRef : StorageReference
+    private lateinit var mAuth: FirebaseAuth
 
     var senderRoom: String? = null
     var receiverRoom: String? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setIcon(R.drawable.catchat_logo_no_bk)
         setContentView(R.layout.activity_chat_page)
 
 
@@ -33,11 +47,71 @@ class chatPage : AppCompatActivity() {
 
         val senderUid = FirebaseAuth.getInstance().currentUser?.uid
         mDbRef = FirebaseDatabase.getInstance().getReference()
+        mAuth = FirebaseAuth.getInstance()
 
         senderRoom = receiveruid + senderUid
         receiverRoom = senderUid + receiveruid
 
-        supportActionBar?.title = name
+
+//--------PROFILE PIC SETUP
+//        supportActionBar?.title = name
+//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        supportActionBar?.setLogo(R.drawable.catchat_logo)
+//        supportActionBar?.setDisplayUseLogoEnabled(true)
+//        supportActionBar?.setIcon(R.drawable.catchat_logo)
+
+        supportActionBar?.apply {
+            setDisplayShowHomeEnabled(false)
+            setDisplayHomeAsUpEnabled(false)
+            setDisplayShowTitleEnabled(false)
+            setDisplayUseLogoEnabled(false)
+
+
+            // Set a custom view for the action bar
+            setCustomView(R.layout.chatroom_action_bar)
+
+            // Get a reference to the ImageView in the custom layout
+            val imageView = customView.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.action_bar_image_view)
+            val action_name = customView.findViewById<TextView>(R.id.action_name)
+
+            // Set a new drawable for the ImageView
+//            imageView.setImageResource(R.drawable.my_new_image)
+            action_name.setText(name)
+
+//-----------------------------FETCHING PROFILE PIC FROM CLOUD--------------------------------------
+            val curruid = receiveruid
+            val imageName = curruid
+            storRef = FirebaseStorage.getInstance().getReference("profilePic/$imageName")
+            val localFile = File.createTempFile("tempIMG","jpg")
+            storRef.getFile(localFile).addOnCompleteListener{
+
+                val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+//                val bitmap: Bitmap = bit// your bitmap here
+                val drawable = BitmapDrawable(resources, bitmap)
+
+// Set the drawable on the ImageView in the action bar
+                if (bitmap != null) {
+                    imageView.setImageDrawable(drawable)
+                }
+//            profile_pic = findViewById(R.id.profile_pic)
+//            if (bitmap != null){
+//                profile_pic.setImageBitmap(bitmap)
+//            }
+
+            }.addOnFailureListener{
+
+            }
+//---------------------------------------------------------------------------------------------------
+
+
+            // Show the custom view in the action bar
+            displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
+        }
+
+
+
+
+//---------------------------
 
         messageRecyclerView = findViewById(R.id.chatRecyclerView)
         messageBox = findViewById(R.id.chatBox)
@@ -90,3 +164,4 @@ class chatPage : AppCompatActivity() {
         }
     }
 }
+

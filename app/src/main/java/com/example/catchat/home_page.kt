@@ -151,7 +151,9 @@ class home_page : AppCompatActivity() {
 
             val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
             profile_pic = findViewById(R.id.profile_pic)
-            profile_pic.setImageBitmap(bitmap)
+            if (bitmap != null){
+                profile_pic.setImageBitmap(bitmap)
+            }
 
         }.addOnFailureListener{
 
