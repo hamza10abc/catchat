@@ -115,7 +115,7 @@
         android:textColor="@color/blue"
         android:textColorHint="@color/orange"
         android:textSize="18dp"
-        android:textStyle="bold"></TextView>
+        android:textStyle="bold"/>
 
 
 </RelativeLayout>

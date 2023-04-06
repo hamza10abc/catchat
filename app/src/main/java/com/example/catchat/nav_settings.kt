@@ -37,6 +37,7 @@ class nav_settings : AppCompatActivity() {
     private lateinit var Img_URI : Uri
     private lateinit var Fbstorage: FirebaseStorage
     private lateinit var storREF: StorageReference
+    private var x = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -128,7 +129,7 @@ class nav_settings : AppCompatActivity() {
 
         upload_img_btn.setOnClickListener {
 
-            if(imagePreview == catchat_logo){
+            if(x>0){
                 uploadImage() 
             }
             else{
@@ -250,6 +251,7 @@ class nav_settings : AppCompatActivity() {
         if (requestCode == 100 && resultCode == RESULT_OK){
             Img_URI = data?.data!!
             imagePreview.setImageURI(Img_URI)
+            x = 1
         }
     }
 

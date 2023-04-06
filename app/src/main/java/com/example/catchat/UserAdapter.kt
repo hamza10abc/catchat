@@ -54,11 +54,7 @@ class UserAdapter(val context: Context, val userList: ArrayList<user>):
 
         holder.textname.text = currentUser.name
 
-
-
-
-
-
+        holder.indicator.setVisibility(View.INVISIBLE)
 
         holder.itemView.setOnClickListener{
 
@@ -78,7 +74,7 @@ class UserAdapter(val context: Context, val userList: ArrayList<user>):
     class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val textname = itemView.findViewById<TextView>(R.id.txt_name)
         val profilePic = itemView.findViewById<ImageView>(R.id.profilePic)
-
+        val indicator = itemView.findViewById<ImageView>(R.id.green_indicator)
     }
 
 

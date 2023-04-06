@@ -17,11 +17,20 @@
 <!--            android:layout_height="50dp"-->
 <!--            android:src="@drawable/catchat_logo" />-->
 
+        <ImageButton
+            android:id="@+id/backbtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/orange_back_btn"
+            android:backgroundTint="#121212"/>
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/action_bar_image_view"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/catchat_logo"
+            android:layout_toRightOf="@id/backbtn"
             android:layout_centerVertical="true"/>
 
         <TextView
@@ -65,6 +74,8 @@
 <!--            android:layout_weight="5"/>-->
 <!--        -->
 <!--    </LinearLayout>-->
+
+
 
 
 

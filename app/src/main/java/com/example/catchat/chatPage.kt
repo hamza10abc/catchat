@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.MenuItem
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -80,11 +81,18 @@ class chatPage : AppCompatActivity() {
             val imageView = customView.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.action_bar_image_view)
             val action_name = customView.findViewById<TextView>(R.id.action_name)
             val Remove_Frnd_Btn = customView.findViewById<ImageView>(R.id.Remove_frnd_btn)
+            val back_btn = customView.findViewById<ImageButton>(R.id.backbtn)
+
+            back_btn.setOnClickListener {
+                val intent = Intent(applicationContext,home_page::class.java)
+                finish()
+                startActivity(intent)
+            }
 
             Remove_Frnd_Btn.setOnClickListener {
                 val builder = AlertDialog.Builder(this@chatPage)
                 builder.setTitle("REMOVE FRIEND")
-                builder.setMessage("ARE YOU SURE YOU WANT TO UNFRIEND $name FROM YOUR FRIEND LIST")
+                builder.setMessage("Are you sure you want to UNFRIEND $name from your friend list")
                 builder.setPositiveButton("YES",{ dialogInterface: DialogInterface, i: Int ->
 
 

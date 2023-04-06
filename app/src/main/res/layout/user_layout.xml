@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:background="@color/SkyBlue">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -35,12 +35,27 @@
                     android:text="HELLO"
                     android:textSize="30dp"
                     android:textStyle="bold"
+                    android:layout_toRightOf="@id/profilePic"
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="15dp"
                     android:gravity="center_vertical"
                     android:textColor="@color/orange"/>
 
-            </LinearLayout>
+                <TextView
+                    android:id="@+id/txt_email"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"/>
+
+                <ImageView
+                    android:id="@+id/green_indicator"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/orange_indicator"
+                    android:layout_marginRight="20dp"/>
+
+            </RelativeLayout>
 
 
 
