@@ -55,6 +55,59 @@
             android:layout_above="@id/userRecyclerView"
             android:layout_toRightOf="@id/usr_nme"/>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:srcCompat="@drawable/fab_btn_icon"
+            android:tint="@color/teal_200"
+            app:maxImageSize="70dp"
+            android:backgroundTint="@color/orange"
+            android:onClick="onFabClick"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="25dp"
+            android:layout_marginRight="25dp"
+            android:contentDescription="FAB BUTTON"/>
+
+
+        <!---  - - - -TEST FRAGMENT CODE BELOW- - - - - - - -->
+<!--        <androidx.viewpager2.widget.ViewPager2-->
+<!--            android:id="@+id/viewPager"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_above="@id/tabLayout"/>-->
+
+<!--        <com.google.android.material.tabs.TabLayout-->
+<!--            android:id="@+id/tabLayout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:tabMaxWidth="0dp"-->
+<!--            app:tabGravity="fill"-->
+<!--            app:tabMode="fixed"-->
+<!--            android:background="@color/tabBackgroundColor"-->
+<!--            app:tabIndicatorColor="?colorPrimary"-->
+<!--            android:layout_alignParentBottom="true">-->
+
+<!--            <com.google.android.material.tabs.TabItem-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Home"/>-->
+
+<!--            <com.google.android.material.tabs.TabItem-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="List"/>-->
+
+<!--            <com.google.android.material.tabs.TabItem-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Chart"/>-->
+
+<!--        </com.google.android.material.tabs.TabLayout>-->
+<!--- - - - - -TEST FRAGMENT CODE BELOW - - - - - - - - -->
+
 
 
     </RelativeLayout>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserListPage"
+    android:background="@color/black">
+
+    <RelativeLayout
+        android:id="@+id/host"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/page_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="10dp"
+            android:shadowColor="@color/black"
+            android:text="FRIENDS and FAMILY"
+            android:textAlignment="center"
+            android:textColor="@color/orange"
+            android:textSize="40dp"
+            android:textStyle="bold">
+        </TextView>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+
+            android:id="@+id/userRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/page_top"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/user_layout">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/usr_nme"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_above="@id/userRecyclerView" />
+        <TextView
+            android:id="@+id/usr_email"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_above="@id/userRecyclerView"
+            android:layout_toRightOf="@id/usr_nme"/>
+
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:weightSum="100">
+
+        <Button
+            android:id="@+id/back_btn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/orange"
+            android:text="BACK"
+            android:textColor="@color/blue"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="105dp"
+            android:layout_marginLeft="105dp"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

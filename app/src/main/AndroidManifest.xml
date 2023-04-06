@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CATCHAT">
         <activity
+            android:name=".UserListPage"
+            android:exported="false" />
+        <activity
             android:name=".about_developer"
             android:exported="false" />
         <activity

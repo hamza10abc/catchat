@@ -12,4 +12,5 @@
     <color name="SkyBlue">#33ffff</color>
     <color name="LightSkyBlue">#99ffff</color>
     <color name="BrightSkyBlue">#00e6e6</color>
+    <color name="tabBackgroundColor">#EEE</color>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.catchat
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -11,7 +12,9 @@ import android.view.MenuItem
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -28,6 +31,7 @@ class chatPage : AppCompatActivity() {
     private lateinit var messageAdapter: MessageAdapter
     private lateinit var messageList: ArrayList<Message>
     private lateinit var mDbRef: DatabaseReference
+    private lateinit var dbref : DatabaseReference
     private lateinit var storRef : StorageReference
     private lateinit var mAuth: FirebaseAuth
 
@@ -47,7 +51,9 @@ class chatPage : AppCompatActivity() {
 
         val senderUid = FirebaseAuth.getInstance().currentUser?.uid
         mDbRef = FirebaseDatabase.getInstance().getReference()
+        dbref = FirebaseDatabase.getInstance().getReference()
         mAuth = FirebaseAuth.getInstance()
+        val currid = mAuth.currentUser?.uid
 
         senderRoom = receiveruid + senderUid
         receiverRoom = senderUid + receiveruid
@@ -73,6 +79,33 @@ class chatPage : AppCompatActivity() {
             // Get a reference to the ImageView in the custom layout
             val imageView = customView.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.action_bar_image_view)
             val action_name = customView.findViewById<TextView>(R.id.action_name)
+            val Remove_Frnd_Btn = customView.findViewById<ImageView>(R.id.Remove_frnd_btn)
+
+            Remove_Frnd_Btn.setOnClickListener {
+                val builder = AlertDialog.Builder(this@chatPage)
+                builder.setTitle("REMOVE FRIEND")
+                builder.setMessage("ARE YOU SURE YOU WANT TO UNFRIEND $name FROM YOUR FRIEND LIST")
+                builder.setPositiveButton("YES",{ dialogInterface: DialogInterface, i: Int ->
+
+
+                    dbref.child("user").child("$currid").child("Friends").child("$receiveruid").removeValue().addOnSuccessListener{
+
+                        Toast.makeText(applicationContext, "FRIEND REMOVED", Toast.LENGTH_LONG).show()
+
+                        val intent = Intent(applicationContext,home_page::class.java)
+                        finish()
+                        startActivity(intent)
+                    }.addOnFailureListener {
+
+                        Toast.makeText(applicationContext, "FAILED TO UNFRIEND", Toast.LENGTH_LONG).show()
+
+                    }
+
+                })
+
+                builder.setNegativeButton("NO",{ dialogInterface: DialogInterface, i: Int -> })
+                builder.show()
+            }
 
             // Set a new drawable for the ImageView
 //            imageView.setImageResource(R.drawable.my_new_image)

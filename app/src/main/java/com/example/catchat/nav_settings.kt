@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 import java.io.IOException
 
@@ -127,7 +128,12 @@ class nav_settings : AppCompatActivity() {
 
         upload_img_btn.setOnClickListener {
 
-            uploadImage()
+            if(imagePreview == catchat_logo){
+                uploadImage() 
+            }
+            else{
+                Toast.makeText(applicationContext, "PLEASE SELECT AN IMAGE", Toast.LENGTH_SHORT).show()
+            }
 
 //            Toast.makeText(applicationContext, "THIS FEATURE IS CURRENTLY UNAVAILABLE", Toast.LENGTH_SHORT).show()
 
@@ -227,7 +233,7 @@ class nav_settings : AppCompatActivity() {
         }.addOnFailureListener{
             Toast.makeText(applicationContext, "ERROR: UNABLE TO UPLOAD", Toast.LENGTH_SHORT).show()
         }
-
+        
     }
 
     private fun selectImage() {

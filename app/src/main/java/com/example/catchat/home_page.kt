@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import android.R.id.home
 import android.graphics.BitmapFactory
+import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
@@ -19,11 +20,14 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import kotlinx.android.synthetic.main.activity_home_page.*
 import java.io.File
 
 class home_page : AppCompatActivity() {
@@ -238,18 +242,32 @@ class home_page : AppCompatActivity() {
 
         }
 
+//----------------FRAGMENT + BOTTOM NAVBAR SETUP-------------------//
+//        setUpTabBar()
+//----------------FRAGMENT + BOTTOM NAVBAR SETUP-------------------//
 
 
 
 
+        val currid = mAuth.currentUser?.uid
 
-
-
-
-        mDbRef.child("user").addValueEventListener(object: ValueEventListener{
+//mDbRef.child("user").addValueEventListener(object: ValueEventListener{
+        mDbRef.child("user").child("$currid").child("Friends").addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 userList.clear()
+//                for (parentSnapshot in snapshot.children){
+//                    for (postSnapshot in parentSnapshot.children){
+//                        val currentUser = postSnapshot.getValue(user::class.java)
+//
+//                        if(parentSnapshot.value == currentUser?.uid){
+//                            userList.add(currentUser!!)
+//
+//                        }
+//                    }
+//                }
+
+
                 for (postSnapshot in snapshot.children){
                     val currentUser = postSnapshot.getValue(user::class.java)
 
@@ -270,10 +288,42 @@ class home_page : AppCompatActivity() {
 
     }
 
+//    private fun setUpTabBar() {
+//        val adapter = TabPageAdapter(this,tabLayout.tabCount)
+//        viewPager.adapter = adapter
+//
+//        viewPager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback()
+//        {
+//            override fun onPageSelected(position: Int) {
+//                tabLayout.selectTab(tabLayout.getTabAt(position))
+//            }
+//        })
+//        tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
+//            override fun onTabSelected(tab: TabLayout.Tab) {
+//                viewPager.currentItem = tab.position
+//            }
+//
+//            override fun onTabUnselected(tab: TabLayout.Tab?) {
+//                TODO("Not yet implemented")
+//            }
+//
+//            override fun onTabReselected(tab: TabLayout.Tab?) {
+//                TODO("Not yet implemented")
+//            }
+//        })
+//    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (toggle.onOptionsItemSelected(item)) {
             true
         } else super.onOptionsItemSelected(item)
+    }
+
+    fun onFabClick(view: View) {
+//        Toast.makeText(applicationContext, "FAB CLICKED", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, UserListPage::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
     }
 
 }
