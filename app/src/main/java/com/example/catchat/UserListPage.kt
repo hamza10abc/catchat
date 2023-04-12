@@ -39,8 +39,8 @@ class UserListPage : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         mDbRef = FirebaseDatabase.getInstance().getReference()
 
-        userList = ArrayList()
-        tempArrayList = ArrayList()
+        userList = arrayListOf<user>()
+        tempArrayList = arrayListOf<user>()
 //        adapter = UserListPageAdapter(this@UserListPage,userList)
         adapter = UserListPageAdapter(this@UserListPage,tempArrayList)
 
@@ -51,7 +51,7 @@ class UserListPage : AppCompatActivity() {
         mDbRef.child("user").addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
-                userList.clear()
+//                userList.clear()
                 for (postSnapshot in snapshot.children){
                     val currentUser = postSnapshot.getValue(user::class.java)
 
@@ -61,7 +61,9 @@ class UserListPage : AppCompatActivity() {
                     }
                 }
                 tempArrayList.addAll(userList)
-                adapter.notifyDataSetChanged()
+                var adapter = UserListPageAdapter(this@UserListPage,tempArrayList)
+                userRecyclerView.adapter = adapter
+//                adapter.notifyDataSetChanged()
 
             }
 
@@ -89,7 +91,8 @@ class UserListPage : AppCompatActivity() {
                 val SearchText = p0!!.toLowerCase(Locale.getDefault())
                 if(SearchText.isNotEmpty()){
                     userList.forEach{
-                        if (it.name?.toLowerCase(Locale.getDefault())!!.contains(SearchText) || it.email?.toLowerCase(Locale.getDefault())!!.contains(SearchText)){
+//                        if (it.name?.toLowerCase(Locale.getDefault())!!.contains(SearchText) || it.email?.toLowerCase(Locale.getDefault())!!.contains(SearchText)){
+                        if (it.email?.toLowerCase(Locale.getDefault())!!.contains(SearchText)){
                             tempArrayList.add(it)
                         }
                     }

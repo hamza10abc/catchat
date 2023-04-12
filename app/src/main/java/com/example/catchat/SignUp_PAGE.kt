@@ -3,7 +3,9 @@ package com.example.catchat
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
@@ -17,6 +19,7 @@ class SignUp_PAGE : AppCompatActivity() {
     private lateinit var password: EditText
     private lateinit var signup_btn: Button
     private lateinit var old_user : Button
+    private lateinit var main_box : CheckBox
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mDbRef: DatabaseReference
@@ -38,6 +41,9 @@ class SignUp_PAGE : AppCompatActivity() {
         password = findViewById(R.id.password)
         signup_btn = findViewById(R.id.signup_pg_btn)
         old_user = findViewById(R.id.alrdy_user)
+        main_box = findViewById(R.id.main_box)
+        main_box.isChecked = false
+        signup_btn.isClickable = false
 
         edtName.animate().apply {
             edtName.startAnimation(anim_signup1)
@@ -67,19 +73,31 @@ class SignUp_PAGE : AppCompatActivity() {
 
         }
 
-        signup_btn.setOnClickListener {
-                val name = edtName.text.toString()
-                val email = username.text.toString()
-                val password = password.text.toString()
-
-            if(email.isNullOrEmpty() == false && password.isNullOrEmpty() == false && name.isNullOrEmpty() == false) {
-                signup(name, email, password)
-             //   emailVerify(email)
+        main_box.setOnClickListener {
+            if (main_box.isChecked == false){
+                signup_btn.isClickable = false
             }
-            else{
-                Toast.makeText(applicationContext,"ERROR : BLANK ENTRY",Toast.LENGTH_SHORT).show()
+            if (main_box.isChecked == true){
+                signup_btn.isClickable = true
+
+                signup_btn.setOnClickListener {
+                    val name = edtName.text.toString()
+                    val email = username.text.toString()
+                    val password = password.text.toString()
+
+                    if(email.isNullOrEmpty() == false && password.isNullOrEmpty() == false && name.isNullOrEmpty() == false) {
+                        signup(name, email, password)
+                        //   emailVerify(email)
+                    }
+                    else{
+                        Toast.makeText(applicationContext,"ERROR : BLANK ENTRY",Toast.LENGTH_SHORT).show()
+                    }
+                }
+
             }
         }
+
+
 
     }
 /// down...

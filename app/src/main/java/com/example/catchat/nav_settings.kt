@@ -17,8 +17,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.auth.api.signin.internal.Storage
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -32,6 +31,7 @@ class nav_settings : AppCompatActivity() {
     private lateinit var mDbRef: DatabaseReference
     private lateinit var database: DatabaseReference
     private lateinit var update_DB: DatabaseReference
+    private lateinit var update_DB2: DatabaseReference
 
     private lateinit var imagePreview : ImageView
     private lateinit var Img_URI : Uri
@@ -182,26 +182,46 @@ class nav_settings : AppCompatActivity() {
             if(username.isNullOrEmpty() == false){
 
                 update_DB = FirebaseDatabase.getInstance().getReference("user").child("$curruid")
+                update_DB2 = FirebaseDatabase.getInstance().getReference("user")
                 val user = mapOf<String, String>("name" to username)
 
                 update_DB.updateChildren(user).addOnSuccessListener {
-
                     new_usrname_txt.setText("")
                     Toast.makeText(
                         applicationContext,
                         "USERNAME CHANGED SUCCESSFULLY",
                         Toast.LENGTH_SHORT
                     ).show()
-
                 }.addOnFailureListener {
-
                     Toast.makeText(
                         applicationContext,
                         "UNSUCCESSFUL : UPDATION FAILED",
                         Toast.LENGTH_SHORT
                     ).show()
-
                 }
+
+                //-------------------------
+                update_DB2.addValueEventListener(object : ValueEventListener{
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        for (topuidSnapshot in snapshot.children){
+                            val topuid = topuidSnapshot.key
+
+                            if (topuidSnapshot.child("Friends").hasChild("$curruid")){
+
+                                topuidSnapshot.child("Friends").child("$curruid").child("name").ref.setValue(username).addOnSuccessListener {  }.addOnFailureListener {
+                                    Toast.makeText(applicationContext, "FAILED TO UPDATE", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+
+                })
+                //-------------------------
 
             }else{
                 Toast.makeText(applicationContext, "ERROR: BLANK ENTRY", Toast.LENGTH_SHORT).show()

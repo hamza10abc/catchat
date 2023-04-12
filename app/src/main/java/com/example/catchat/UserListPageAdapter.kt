@@ -2,14 +2,18 @@ package com.example.catchat
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import android.graphics.BitmapFactory
-import android.location.GnssAntennaInfo
+import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -21,6 +25,7 @@ private lateinit var DBref : DatabaseReference
 private lateinit var mDbRef : DatabaseReference
 private lateinit var mAuth: FirebaseAuth
 private lateinit var storRef : StorageReference
+private lateinit var storageCheck : StorageReference
 
 class UserListPageAdapter(val context: Context, val userList: ArrayList<user>):
     RecyclerView.Adapter<UserListPageAdapter.UserViewHolder>() {
@@ -39,15 +44,24 @@ class UserListPageAdapter(val context: Context, val userList: ArrayList<user>):
         //----PROFILE PIC FETCH
         val imageName = currentUser.uid
         storRef = FirebaseStorage.getInstance().getReference("profilePic/$imageName")
+        storageCheck = FirebaseStorage.getInstance().getReference()
         val localFile = File.createTempFile("tempIMG","jpg")
+        val drawable = ContextCompat.getDrawable(context,R.drawable.catchat_logo)
+        val filePath = "gs://catchat-cffdf.appspot.com/profilePic/$imageName"
+        val fileReference = storageCheck.child(filePath)
         storRef.getFile(localFile).addOnCompleteListener{
-
             val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
             if (bitmap != null){
                 holder.profilePic.setImageBitmap(bitmap)
             }
         }.addOnFailureListener{
+            holder.profilePic.setImageDrawable(drawable)
         }
+//        fileReference.putFile(Uri.EMPTY).addOnSuccessListener {
+//
+//        }.addOnFailureListener {
+//            holder.profilePic.setImageDrawable(drawable)
+//        }
         //-------------------------------
 
         //-----INDICATOR CODE----------//
@@ -71,6 +85,7 @@ class UserListPageAdapter(val context: Context, val userList: ArrayList<user>):
             }
         })
 
+        if(holder.indicator.isVisible == true)
         //-----INDICATOR CODE----------//
         holder.textname.text = currentUser.name
         holder.textEmail.text = currentUser.email
@@ -112,7 +127,7 @@ class UserListPageAdapter(val context: Context, val userList: ArrayList<user>):
     class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val textname = itemView.findViewById<TextView>(R.id.txt_name)
         val profilePic = itemView.findViewById<ImageView>(R.id.profilePic)
-        val indicator = itemView.findViewById<ImageView>(R.id.green_indicator)
+        val indicator = itemView.findViewById<ImageView>(R.id.orange_indicator)
         val textEmail = itemView.findViewById<TextView>(R.id.txt_email)
     }
 
