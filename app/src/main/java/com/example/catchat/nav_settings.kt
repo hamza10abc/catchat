@@ -22,8 +22,10 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
+import java.net.URL
 
 class nav_settings : AppCompatActivity() {
 
@@ -269,10 +271,42 @@ class nav_settings : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 100 && resultCode == RESULT_OK){
-            Img_URI = data?.data!!
-            imagePreview.setImageURI(Img_URI)
+//            Img_URI = data?.data!!
+//            val resized = Bitmap.createScaledBitmap(Img_URI, 400, 400, true)
+//            imagePreview.setImageURI(Img_URI)
             x = 1
+
+            val inputStream = contentResolver.openInputStream(data?.data!!)
+            val options = BitmapFactory.Options()
+            options.inJustDecodeBounds = true
+            BitmapFactory.decodeStream(inputStream, null, options)
+            inputStream?.close()
+
+            // Calculate the image's new dimensions
+            val width = options.outWidth
+            val height = options.outHeight
+            val scaleFactor = Math.min(width / 400, height / 400)
+
+            // Load the image into memory with the calculated dimensions
+            options.inJustDecodeBounds = false
+            options.inSampleSize = scaleFactor
+            val resizedBitmap = BitmapFactory.decodeStream(contentResolver.openInputStream(data?.data!!), null, options)
+            imagePreview.setImageBitmap(resizedBitmap)
+            Img_URI = resizedBitmap?.let { getImageUri(it) }!!
+
         }
+    }
+
+    private fun getImageUri(bitmap: Bitmap): Uri {
+        val bytes = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val path = MediaStore.Images.Media.insertImage(
+            contentResolver,
+            bitmap,
+            "Image",
+            null
+        )
+        return Uri.parse(path)
     }
 
 }
