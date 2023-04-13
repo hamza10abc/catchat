@@ -45,7 +45,8 @@
             android:layout_centerVertical="true"
             android:textSize="30dp"
             android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="20dp"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textStyle="bold"
             android:layout_weight="45"
             android:layout_toRightOf="@id/action_bar_image_view"/>

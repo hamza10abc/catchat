@@ -6,8 +6,10 @@ import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -31,6 +33,9 @@ class UserAdapter(val context: Context, val userList: ArrayList<user>):
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
+
+        holder.cardView.startAnimation(AnimationUtils.loadAnimation(holder.itemView.context,R.anim.fall_down))
+
         val currentUser = userList[position]
 
         //----PROFILE PIC FETCH
@@ -98,6 +103,7 @@ class UserAdapter(val context: Context, val userList: ArrayList<user>):
         val textname = itemView.findViewById<TextView>(R.id.txt_name)
         val profilePic = itemView.findViewById<ImageView>(R.id.profilePic)
         val indicator = itemView.findViewById<ImageView>(R.id.orange_indicator)
+        val cardView = itemView.findViewById<CardView>(R.id.userLayout_view)
     }
 
 

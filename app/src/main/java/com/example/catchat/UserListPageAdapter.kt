@@ -9,9 +9,11 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
@@ -39,6 +41,9 @@ class UserListPageAdapter(val context: Context, val userList: ArrayList<user>):
 
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
+
+        holder.cardView.startAnimation(AnimationUtils.loadAnimation(holder.itemView.context,R.anim.fall_anim2))
+
         val currentUser = userList[position]
 
         //----PROFILE PIC FETCH
@@ -50,12 +55,14 @@ class UserListPageAdapter(val context: Context, val userList: ArrayList<user>):
         val filePath = "gs://catchat-cffdf.appspot.com/profilePic/$imageName"
         val fileReference = storageCheck.child(filePath)
         storRef.getFile(localFile).addOnCompleteListener{
+            holder.textname.text = currentUser.name
             val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
             if (bitmap != null){
                 holder.profilePic.setImageBitmap(bitmap)
             }
         }.addOnFailureListener{
             holder.profilePic.setImageDrawable(drawable)
+            holder.textname.text = currentUser.name
         }
 //        fileReference.putFile(Uri.EMPTY).addOnSuccessListener {
 //
@@ -87,7 +94,7 @@ class UserListPageAdapter(val context: Context, val userList: ArrayList<user>):
 
         if(holder.indicator.isVisible == true)
         //-----INDICATOR CODE----------//
-        holder.textname.text = currentUser.name
+//        holder.textname.text = currentUser.name
         holder.textEmail.text = currentUser.email
         holder.textEmail.setVisibility(View.INVISIBLE)
 
@@ -129,6 +136,7 @@ class UserListPageAdapter(val context: Context, val userList: ArrayList<user>):
         val profilePic = itemView.findViewById<ImageView>(R.id.profilePic)
         val indicator = itemView.findViewById<ImageView>(R.id.orange_indicator)
         val textEmail = itemView.findViewById<TextView>(R.id.txt_email)
+        val cardView = itemView.findViewById<CardView>(R.id.userLayout_view)
     }
 
 

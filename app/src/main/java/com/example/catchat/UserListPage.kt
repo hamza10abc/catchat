@@ -19,7 +19,7 @@ class UserListPage : AppCompatActivity() {
     private lateinit var userRecyclerView: RecyclerView
     private lateinit var userList: ArrayList<user>
     private lateinit var tempArrayList: ArrayList<user>
-    private lateinit var adapter: UserListPageAdapter
+//    private lateinit var adapter: UserListPageAdapter
     private lateinit var mAuth : FirebaseAuth
     private lateinit var mDbRef: DatabaseReference
 
@@ -42,11 +42,11 @@ class UserListPage : AppCompatActivity() {
         userList = arrayListOf<user>()
         tempArrayList = arrayListOf<user>()
 //        adapter = UserListPageAdapter(this@UserListPage,userList)
-        adapter = UserListPageAdapter(this@UserListPage,tempArrayList)
+//        var adapter = UserListPageAdapter(this@UserListPage,tempArrayList)
 
         userRecyclerView = findViewById(R.id.userRecyclerView)
         userRecyclerView.layoutManager = LinearLayoutManager(this)
-        userRecyclerView.adapter = adapter
+        userRecyclerView.setHasFixedSize(true)
 
         mDbRef.child("user").addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -96,13 +96,13 @@ class UserListPage : AppCompatActivity() {
                             tempArrayList.add(it)
                         }
                     }
-                    userRecyclerView.adapter!!.notifyDataSetChanged()
+                    userRecyclerView.adapter?.notifyDataSetChanged()
                 }
 
                 else{
                     tempArrayList.clear()
                     tempArrayList.addAll(userList)
-                    userRecyclerView.adapter!!.notifyDataSetChanged()
+                    userRecyclerView.adapter?.notifyDataSetChanged()
                 }
                 return false
             }
