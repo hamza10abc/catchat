@@ -2,12 +2,10 @@ package com.example.catchat
 
 import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.MenuItem
 import android.widget.EditText
 import android.widget.ImageButton
@@ -159,6 +157,8 @@ class chatPage : AppCompatActivity() {
         send_btn = findViewById(R.id.send_btn)
         messageList = ArrayList()
         messageAdapter = MessageAdapter(this,messageList)
+
+        val listSize = messageList.size
 
         messageRecyclerView.layoutManager = LinearLayoutManager(this)
         messageRecyclerView.adapter = messageAdapter

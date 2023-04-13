@@ -91,8 +91,8 @@ class UserListPage : AppCompatActivity() {
                 val SearchText = p0!!.toLowerCase(Locale.getDefault())
                 if(SearchText.isNotEmpty()){
                     userList.forEach{
-//                        if (it.name?.toLowerCase(Locale.getDefault())!!.contains(SearchText) || it.email?.toLowerCase(Locale.getDefault())!!.contains(SearchText)){
-                        if (it.email?.toLowerCase(Locale.getDefault())!!.contains(SearchText)){
+                        if (it.name?.toLowerCase(Locale.getDefault())!!.contains(SearchText) || it.email?.toLowerCase(Locale.getDefault())!!.contains(SearchText)){
+//                        if (it.email?.toLowerCase(Locale.getDefault())!!.contains(SearchText)){
                             tempArrayList.add(it)
                         }
                     }
