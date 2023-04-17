@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.catchat">
+    package="com.abcd.catchat">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -14,31 +14,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CATCHAT">
         <activity
-            android:name=".UserListPage"
+            android:name="com.abcd.catchat.UserListPage"
             android:exported="false" />
         <activity
-            android:name=".about_developer"
+            android:name="com.abcd.catchat.about_developer"
             android:exported="false" />
         <activity
-            android:name=".nav_settings"
+            android:name="com.abcd.catchat.nav_settings"
             android:exported="false" />
         <activity
-            android:name=".ForgotPassword"
+            android:name="com.abcd.catchat.ForgotPassword"
             android:exported="false" />
         <activity
-            android:name=".VerificationPage"
+            android:name="com.abcd.catchat.VerificationPage"
             android:exported="false" />
         <activity
-            android:name=".chatPage"
+            android:name="com.abcd.catchat.chatPage"
             android:exported="false" />
         <activity
-            android:name=".home_page"
+            android:name="com.abcd.catchat.home_page"
             android:exported="false" />
         <activity
-            android:name=".SignUp_PAGE"
+            android:name="com.abcd.catchat.SignUp_PAGE"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.abcd.catchat.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

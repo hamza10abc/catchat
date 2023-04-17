@@ -1,4 +1,4 @@
-package com.example.catchat
+package com.abcd.catchat
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

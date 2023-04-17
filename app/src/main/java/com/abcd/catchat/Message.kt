@@ -1,4 +1,4 @@
-package com.example.catchat
+package com.abcd.catchat
 
 class Message {
     var message: String? = null

@@ -1,7 +1,6 @@
-package com.example.catchat
+package com.abcd.catchat
 
 import android.content.Intent
-import android.location.GnssAntennaInfo.Listener
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu

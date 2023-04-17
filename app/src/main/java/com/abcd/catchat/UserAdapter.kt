@@ -1,4 +1,4 @@
-package com.example.catchat
+package com.abcd.catchat
 
 import android.content.Context
 import android.content.Intent

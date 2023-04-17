@@ -1,15 +1,16 @@
 {
   "project_info": {
     "project_number": "459704883836",
+    "firebase_url": "https://catchat-cffdf-default-rtdb.firebaseio.com",
     "project_id": "catchat-cffdf",
     "storage_bucket": "catchat-cffdf.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:459704883836:android:e0492c37886719b2fa47f9",
+        "mobilesdk_app_id": "1:459704883836:android:fedc492135c021f0fa47f9",
         "android_client_info": {
-          "package_name": "com.example.catchat"
+          "package_name": "com.abcd.catchat"
         }
       },
       "oauth_client": [

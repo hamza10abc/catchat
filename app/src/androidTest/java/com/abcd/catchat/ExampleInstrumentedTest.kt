@@ -1,4 +1,4 @@
-package com.example.catchat
+package com.abcd.catchat
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

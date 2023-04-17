@@ -1,4 +1,4 @@
-package com.example.catchat
+package com.abcd.catchat
 
 import org.junit.Test
 

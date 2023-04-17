@@ -1,4 +1,4 @@
-package com.example.catchat
+package com.abcd.catchat
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

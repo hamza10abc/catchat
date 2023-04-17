@@ -1,4 +1,4 @@
-package com.example.catchat
+package com.abcd.catchat
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView

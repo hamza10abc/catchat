@@ -1,34 +1,26 @@
-package com.example.catchat
+package com.abcd.catchat
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
-import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
-import android.R.id.home
 import android.graphics.BitmapFactory
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import kotlinx.android.synthetic.main.activity_home_page.*
 import java.io.File
+import android.net.Uri
+import android.content.ActivityNotFoundException
 
 class home_page : AppCompatActivity() {
 
@@ -198,6 +190,65 @@ class home_page : AppCompatActivity() {
                     startActivity(intent)
                     overridePendingTransition(0,0)
                     return@setNavigationItemSelectedListener true
+                }
+
+
+            };false
+
+            when(item.itemId){
+                R.id.nav_rate ->{
+
+                    try {
+                        val uri = Uri.parse("market://details?id=$packageName")
+                        val intent = Intent(Intent.ACTION_VIEW, uri)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_NEW_DOCUMENT or Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
+                        startActivity(intent)
+                    } catch (e: ActivityNotFoundException) {
+                        // Google Play Store app is not installed, fallback to web
+                        val uri = Uri.parse("https://play.google.com/store/apps/details?id=$packageName")
+                        val intent = Intent(Intent.ACTION_VIEW, uri)
+                        startActivity(intent)
+                    }
+                }
+
+
+            };false
+
+            when(item.itemId){
+                R.id.nav_feedback ->{
+
+                    val recipient = "hamza10abc@gmail.com"
+                    val subject = "feedback for CATCHAT"
+
+
+                    val intent = Intent(Intent.ACTION_SEND).apply {
+                        type = "text/plain"
+                        putExtra(Intent.EXTRA_EMAIL, arrayOf(recipient))
+                        putExtra(Intent.EXTRA_SUBJECT, subject)
+                    }
+
+// Create a chooser dialog with options to select email app
+                    val chooser = Intent.createChooser(intent, "Select Email App")
+
+                    try {
+                        startActivity(chooser)
+                    } catch (e: ActivityNotFoundException) {
+                        Toast.makeText(applicationContext,"Unable to launch Email App",Toast.LENGTH_SHORT).show()
+                    }
+//--------------------------------------------------------------------
+//                    val recipient = "abc@gmail.com"
+//                    val subject = "feedback for CATCHAT"
+//
+//                    val intent = Intent(Intent.ACTION_SENDTO).apply {
+//                        data = Uri.parse("mailto:$recipient")
+//                        putExtra(Intent.EXTRA_SUBJECT, subject)
+//                    }
+//
+//                    try {
+//                        startActivity(intent)
+//                    } catch (e: ActivityNotFoundException) {
+//                        // Handle case where Gmail app is not installed
+//                    }
                 }
 
 
